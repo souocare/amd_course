@@ -1,0 +1,108 @@
+\set dataBase fpa_db
+;
+\set userName postgres
+;
+\connect :dataBase :userName
+;
+
+DELETE FROM TREATS;
+DELETE FROM DOCTOR;
+DELETE FROM PATIENT;
+DELETE FROM DISEASE;
+DELETE FROM DIAGNOSTIC;
+
+---------
+-- DOCTOR
+---------
+
+INSERT INTO DOCTOR( cc, name, birthDate )
+VALUES 
+	( '84234061', 'Pedro Ribeiro',			TO_DATE('17/12/1982', 'DD/MM/YYYY') ),
+	( '04729474', 'Nuno Markl',				TO_DATE('23/11/1981', 'DD/MM/YYYY') ),
+	( '85027594', 'Ricardo Araujo Pereira',	TO_DATE('08/01/1965', 'DD/MM/YYYY') ),
+	( '93720037', 'Vasco Palmeirim',		TO_DATE('01/02/1979', 'DD/MM/YYYY') )
+;
+
+----------
+-- PATIENT
+----------
+
+INSERT INTO PATIENT( cc, name, birthDate )
+VALUES 
+	( '94743593', 'Cristina Ferreira',		TO_DATE('01/07/1982', 'DD/MM/YYYY') ),
+	( '38232057', 'Manuel Luis Goucha',		TO_DATE('31/07/1978', 'DD/MM/YYYY') ),
+	( '38203213', 'Antonio Silva',			TO_DATE('30/04/1975', 'DD/MM/YYYY') ),
+	( '33174924', 'Fatima Lopes',			TO_DATE('05/02/1990', 'DD/MM/YYYY') ),
+	( '31242673', 'Andreia Lopes',			TO_DATE('15/12/1989', 'DD/MM/YYYY') ),
+	( '47234294', 'Isabel Silva',			TO_DATE('17/12/1996', 'DD/MM/YYYY') ),
+	( '94297410', 'Pedro Silva',			TO_DATE('07/03/1998', 'DD/MM/YYYY') ),
+	( '20228423', 'Julio Isidro',			TO_DATE('09/08/1971', 'DD/MM/YYYY') ),
+	( '22449022', 'Goncalo Alves',			TO_DATE('25/06/1973', 'DD/MM/YYYY') ),
+	( '91711174', 'Joao Baiao',				TO_DATE('02/12/1961', 'DD/MM/YYYY') ),
+	( '23030044', 'Vanessa Matos',			TO_DATE('12/02/1965', 'DD/MM/YYYY') ),
+	( '93999329', 'Marco Horacio',			TO_DATE('15/02/1994', 'DD/MM/YYYY') ),
+	( '59275202', 'Catarian Santos',		TO_DATE('05/12/1992', 'DD/MM/YYYY') ),
+	( '21380007', 'Jose Carlos Malato',		TO_DATE('14/01/1973', 'DD/MM/YYYY') ),
+	( '20730049', 'Carlos Malato Martins',	TO_DATE('04/05/1973', 'DD/MM/YYYY') ),
+	( '48234990', 'Catarina Furtado',		TO_DATE('26/07/1981', 'DD/MM/YYYY') )
+;
+
+----------
+-- DISEASE
+----------
+
+INSERT INTO DISEASE( id, isMyope, isHypermetrope, isAstigmatic )
+VALUES
+	( 0, false,	false,	false ),
+	( 1, true,	false,	false ),
+	( 2, false,	true,	false ),
+	( 3, false,	false,	true ),
+	( 4, true,	true,	false ),
+	( 5, false,	true,	true ),
+	( 6, true,	false,	true ),
+	( 7, true,	true,	true )
+;
+
+-------------
+-- DIAGNOSTIC
+-------------
+
+INSERT INTO DIAGNOSTIC( id, age, tearRate )
+VALUES
+	( 0, 'young',			'reduced' ),
+	( 1, 'young',			'normal' ),
+	( 2, 'presbyopic',		'reduced' ),
+	( 3, 'presbyopic',		'normal' ),
+	( 4, 'pre-presbyopic',	'reduced' ),
+	( 5, 'pre-presbyopic',	'normal' )
+;
+
+---------
+-- TREATS
+---------
+
+INSERT INTO TREATS( prescriptionDate, prescribedLenses, diseaseId, diagnosticId, ccPatient, ccDoctor )
+VALUES
+	( TO_DATE('12/01/2000', 'DD/MM/YYYY'), 'none', 1, 5, '38232057', '84234061' ),
+	( TO_DATE('08/03/2001', 'DD/MM/YYYY'), 'hard', 6, 1, '91711174', '93720037' ),
+	( TO_DATE('10/04/2007', 'DD/MM/YYYY'), 'none', 0, 4, '94743593', '04729474' ),
+	( TO_DATE('25/12/2005', 'DD/MM/YYYY'), 'soft', 3, 2, '33174924', '84234061' ),
+	( TO_DATE('23/09/2010', 'DD/MM/YYYY'), 'none', 0, 5, '47234294', '04729474' ),
+	( TO_DATE('21/11/2002', 'DD/MM/YYYY'), 'none', 1, 3, '20228423', '84234061' ),
+	( TO_DATE('17/01/1999', 'DD/MM/YYYY'), 'hard', 7, 0, '38232057', '85027594' ),
+	( TO_DATE('02/03/2020', 'DD/MM/YYYY'), 'soft', 4, 4, '93999329', '93720037' ),
+	( TO_DATE('03/06/2018', 'DD/MM/YYYY'), 'soft', 3, 2, '38232057', '93720037' ),
+	( TO_DATE('31/10/2016', 'DD/MM/YYYY'), 'hard', 7, 2, '21380007', '04729474' ),
+	( TO_DATE('26/02/1997', 'DD/MM/YYYY'), 'none', 1, 5, '48234990', '85027594' ),
+	
+	( TO_DATE('15/02/2002', 'DD/MM/YYYY'), 'none', 1, 4, '94743593', '93720037' ),
+	( TO_DATE('02/09/2014', 'DD/MM/YYYY'), 'hard', 6, 1, '20730049', '04729474' ),
+	( TO_DATE('11/12/2017', 'DD/MM/YYYY'), 'none', 2, 3, '20228423', '93720037' ),
+	( TO_DATE('12/08/2010', 'DD/MM/YYYY'), 'hard', 6, 1, '23030044', '84234061' ),
+	( TO_DATE('05/02/2006', 'DD/MM/YYYY'), 'soft', 0, 4, '31242673', '84234061' ),
+	( TO_DATE('23/09/2011', 'DD/MM/YYYY'), 'none', 0, 5, '94297410', '04729474' ),
+	( TO_DATE('21/10/2005', 'DD/MM/YYYY'), 'none', 1, 3, '22449022', '93720037' ),
+	( TO_DATE('07/05/1997', 'DD/MM/YYYY'), 'hard', 7, 0, '38203213', '85027594' ),
+	( TO_DATE('02/03/2019', 'DD/MM/YYYY'), 'soft', 4, 4, '59275202', '93720037' ),
+	( TO_DATE('04/01/2001', 'DD/MM/YYYY'), 'soft', 3, 3, '91711174', '84234061' )
+;

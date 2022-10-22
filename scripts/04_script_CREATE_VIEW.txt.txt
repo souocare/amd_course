@@ -1,0 +1,29 @@
+\set dataBase fpa_db
+;
+\set userName postgres
+;
+\connect :dataBase :userName
+;
+
+-- additional information about "client_encoding" in:
+-- http://www.postgresql.org/docs/9.6/static/multibyte.html
+\encoding WIN1250
+;
+
+DROP VIEW IF EXISTS fpa_3RowHeader;
+DROP VIEW IF EXISTS fpa_view;
+
+CREATE VIEW fpa_view ( age, tearRate, isMyope, isAstigmatic, isHypermetrope, prescribedLenses ) AS
+SELECT age, tearRate, isMyope, isAstigmatic, isHypermetrope, prescribedLenses
+FROM DIAGNOSTIC, DISEASE, TREATS
+WHERE diagnosticId = DIAGNOSTIC.id and diseaseId = DISEASE.id
+ORDER BY age DESC, tearRate ASC, prescribedLenses ASC
+;
+
+CREATE VIEW fpa_3RowHeader ( age, tearRate, isMyope, isAstigmatic, isHypermetrope, prescribedLenses ) AS
+SELECT 'discrete', 'discrete', 'discrete', 'discrete', 'discrete', 'discrete'
+UNION ALL
+SELECT '', '', '', '', '', 'class'
+UNION ALL
+SELECT age, tearRate, CAST(isMyope AS VARCHAR), CAST(isAstigmatic AS VARCHAR), CAST(isHypermetrope AS VARCHAR), CAST(prescribedLenses AS VARCHAR) FROM fpa_view
+;
