@@ -21,5 +21,5 @@ COPY (
 		prescribedLenses AS lenses
 	FROM fpa_view 
 	)
-TO 'D:\mestrado 1\AMD - Aprendizagem e mineracao de dados\pratica\Projeto A\05_WorkTerm_TrabalhoFinal\_AMD_finalProject_A\datasets\fpa_dataset.csv'  
+TO 'fpa_dataset.csv'  
 WITH DELIMITER ',' CSV HEADER;
