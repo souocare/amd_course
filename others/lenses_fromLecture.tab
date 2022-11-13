@@ -1,0 +1,21 @@
+age	prescription	astigmatic	tear_rate	lenses
+discrete	discrete	discrete	discrete	discrete
+				class
+young	myope	yes	normal	hard
+young	myope	no	normal	soft
+young	hypermetrope	yes	reduced	none
+young	hypermetrope	no	normal	soft
+young	hypermetrope	no	reduced	none
+presbyopic	myope	yes	reduced	none
+presbyopic	myope	yes	normal	hard
+presbyopic	hypermetrope	yes	reduced	none
+presbyopic	hypermetrope	yes	normal	none
+presbyopic	hypermetrope	no	normal	soft
+presbyopic	hypermetrope	no	reduced	none
+pre-presbyopic	myope	yes	reduced	none
+pre-presbyopic	myope	yes	normal	hard
+pre-presbyopic	myope	no	normal	soft
+pre-presbyopic	hypermetrope	yes	normal	none
+pre-presbyopic	hypermetrope	no	normal	soft
+
+
